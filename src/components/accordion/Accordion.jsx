@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import data from './data'
 import AccordionItem from './AccordionItem'
+import './style.css'
 
 const Accordion = () => {
   const [selected, setSelected] = useState(null)
@@ -33,11 +34,11 @@ const Accordion = () => {
     setMultiSelected(cpyMultiSelected)
   }
 
-  function handleActive(getCurrentId){
-    if (enabledMultiSelection){
+  function handleActive(getCurrentId) {
+    if (enabledMultiSelection) {
       return multiSelected.indexOf(getCurrentId) != -1
     }
-    else{
+    else {
       return selected == getCurrentId
     }
   }
@@ -46,13 +47,15 @@ const Accordion = () => {
     <div className="accordionWrapper">
       <div className="accordion">
         <h1>Accordion</h1>
-        <button onClick={() => setEnabledMultiSelection(!enabledMultiSelection)}>Enable Multi Selection</button>
+        <button
+          className={`accordionButton ${enabledMultiSelection ? 'active' : ''}`}
+        onClick={() => setEnabledMultiSelection(!enabledMultiSelection)}>{(enabledMultiSelection) ? 'Enable Single Selection' : 'Enable Multiple Selection'}</button>
 
         <>
           {
             (data && data.length > 0) ?
               data.map((item) => (
-                <AccordionItem key={item.id} item={item} handleSelection={handleSelection} handleActive={handleActive}/>
+                <AccordionItem key={item.id} item={item} handleSelection={handleSelection} handleActive={handleActive} />
               )) :
               <p>No data available</p>
           }

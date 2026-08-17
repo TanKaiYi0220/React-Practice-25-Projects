@@ -3,13 +3,15 @@ import React from 'react'
 
 
 const AccordionItem = ({ item, handleSelection, handleActive }) => {
+    const isActive = handleActive(item.id);
+
     return (
-        <div onClick={() => handleSelection(item.id)} className="accordionItem">
+        <div onClick={() => handleSelection(item.id)} className={`accordionItem ${isActive ? 'active' : ''}`}>
             <h3>{item.question}</h3>
-            <span>+</span>
+            <span>{(isActive) ? '-' : '+'}</span>
             <h3>
                 {
-                    (handleActive(item.id)) ? <p>{ item.answer }</p> : <p>Hidden</p>
+                    (isActive) ? <p>{item.answer}</p> : ''
                 }
             </h3>
         </div>
