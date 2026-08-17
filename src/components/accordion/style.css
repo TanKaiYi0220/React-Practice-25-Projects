@@ -1,8 +1,5 @@
 .accordionWrapper {
-  --single-selection-accent: #d84e1d;
-  --multi-selection-accent: #2563eb;
-
-  --theme-accent: var(--single-selection-accent);
+  --theme-accent: #d84e1d;
   --theme-accent-hover: #b74318;
   --theme-accent-soft: #fff1eb;
   --theme-page-start: #fffaf7;
@@ -30,7 +27,7 @@
 }
 
 .accordionWrapper.multiSelectionTheme {
-  --theme-accent: var(--multi-selection-accent);
+  --theme-accent: #2563eb;
   --theme-accent-hover: #1d4ed8;
   --theme-accent-soft: #eaf1ff;
   --theme-page-start: #f8fbff;
