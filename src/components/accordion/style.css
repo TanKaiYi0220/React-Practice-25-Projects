@@ -1,4 +1,23 @@
 .accordionWrapper {
+  --single-selection-accent: #d84e1d;
+  --multi-selection-accent: #2563eb;
+
+  --theme-accent: var(--single-selection-accent);
+  --theme-accent-hover: #b74318;
+  --theme-accent-soft: #fff1eb;
+  --theme-page-start: #fffaf7;
+  --theme-page-end: #f7eee9;
+  --theme-text: #172033;
+  --theme-heading: #111827;
+  --theme-muted: #667085;
+  --theme-surface: rgba(255, 255, 255, 0.92);
+  --theme-border: #ead8cf;
+  --theme-accent-border: color-mix(in srgb, var(--theme-accent) 48%, var(--theme-border));
+  --theme-accent-ring: color-mix(in srgb, var(--theme-accent) 30%, transparent);
+  --theme-accent-shadow: color-mix(in srgb, var(--theme-accent) 26%, transparent);
+  --theme-page-glow: color-mix(in srgb, var(--theme-accent) 16%, transparent);
+  --theme-active-bg: color-mix(in srgb, var(--theme-accent) 7%, #ffffff);
+
   min-height: 100vh;
   width: 100%;
   display: flex;
@@ -6,16 +25,25 @@
   justify-content: center;
   padding: 48px 20px;
   background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.16), transparent 32rem),
-    linear-gradient(135deg, #f8fbff 0%, #eef3fa 100%);
+    radial-gradient(circle at top left, var(--theme-page-glow), transparent 32rem),
+    linear-gradient(135deg, var(--theme-page-start) 0%, var(--theme-page-end) 100%);
+}
+
+.accordionWrapper.multiSelectionTheme {
+  --theme-accent: var(--multi-selection-accent);
+  --theme-accent-hover: #1d4ed8;
+  --theme-accent-soft: #eaf1ff;
+  --theme-page-start: #f8fbff;
+  --theme-page-end: #eef3fa;
+  --theme-border: #d9e2ef;
 }
 
 .accordion {
   width: min(92vw, 680px);
   padding: 28px;
-  border: 1px solid #d9e2ef;
+  border: 1px solid var(--theme-border);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.92);
+  background: var(--theme-surface);
   box-shadow: 0 24px 70px rgba(23, 32, 51, 0.12);
   backdrop-filter: blur(14px);
 }
@@ -25,7 +53,7 @@
   font-size: 32px;
   line-height: 1.1;
   font-weight: 750;
-  color: #111827;
+  color: var(--theme-heading);
 }
 
 .accordion > button {
@@ -38,26 +66,26 @@
   border: 0;
   border-radius: 999px;
   color: #ffffff;
-  background: #2563eb;
+  background: var(--theme-accent);
   font: inherit;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.22);
+  box-shadow: 0 12px 24px var(--theme-accent-shadow);
   transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease;
 }
 
 .accordionButton:hover {
-  background: #1d4ed8;
+  background: var(--theme-accent-hover);
   transform: translateY(-1px);
-  box-shadow: 0 16px 30px rgba(37, 99, 235, 0.28);
+  box-shadow: 0 16px 30px var(--theme-accent-shadow);
 }
 
 .accordionButton.active {
-  background: #d84e1d;
+  background: var(--theme-accent);
 }
 
 .accordionButton:focus-visible {
-  outline: 3px solid rgba(37, 99, 235, 0.28);
+  outline: 3px solid var(--theme-accent-ring);
   outline-offset: 3px;
 }
 
@@ -68,7 +96,7 @@
   width: 100%;
   margin-bottom: 12px;
   padding: 18px 20px;
-  border: 1px solid #d9e2ef;
+  border: 1px solid var(--theme-border);
   border-radius: 8px;
   background: #ffffff;
   text-align: left;
@@ -77,21 +105,17 @@
 }
 
 .accordionItem:hover {
-  border-color: rgba(37, 99, 235, 0.45);
-  background: #f9fbff;
+  border-color: var(--theme-accent-border);
+  background: var(--theme-active-bg);
   box-shadow: 0 14px 34px rgba(23, 32, 51, 0.08);
   transform: translateY(-2px);
-}
-
-.accordionItem h3 {
-  margin: 0;
 }
 
 .accordionItem h3:first-of-type {
   font-size: 17px;
   line-height: 1.35;
   font-weight: 720;
-  color: #172033;
+  color: var(--theme-text);
 }
 
 .accordionItem > span {
@@ -100,8 +124,8 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  color: #2563eb;
-  background: #eaf1ff;
+  color: var(--theme-accent);
+  background: var(--theme-accent-soft);
   font-size: 22px;
   font-weight: 700;
   line-height: 1;
@@ -112,14 +136,15 @@
   font-size: 15px;
   line-height: 1.65;
   font-weight: 400;
-  color: #667085;
-}
-
-.accordionItem h3:last-of-type p {
-  margin: 2px 0 0;
+  color: var(--theme-muted);
 }
 
 .accordionItem.active {
-  border-color: rgba(37, 99, 235, 0.7);
-  background: #f7faff;
+  border-color: var(--theme-accent-border);
+  background: var(--theme-active-bg);
+}
+
+.accordionItem.active > span {
+  color: #ffffff;
+  background: var(--theme-accent);
 }

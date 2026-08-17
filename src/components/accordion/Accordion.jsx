@@ -44,7 +44,7 @@ const Accordion = () => {
   }
 
   return (
-    <div className="accordionWrapper">
+    <div className={`accordionWrapper ${enabledMultiSelection ? 'multiSelectionTheme' : 'singleSelectionTheme'}`}>
       <div className="accordion">
         <h1>Accordion</h1>
         <button
