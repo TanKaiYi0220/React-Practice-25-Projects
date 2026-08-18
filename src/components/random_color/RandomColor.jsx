@@ -57,9 +57,19 @@ const RandomColor = () => {
             className="colorContainer"
         >
             <div className="colorButton"
+            ><button
+                className={typeOfColor === 'hex' ? 'active' : ''}
+                onClick={() => setTypeOfColor('hex')}
             >
-                <button onClick={() => { setTypeOfColor("hex") }}>Create HEX Color</button>
-                <button onClick={() => { setTypeOfColor("rgb") }}>Create RGB Color</button>
+                    Create HEX Color
+                </button>
+
+                <button
+                    className={typeOfColor === 'rgb' ? 'active' : ''}
+                    onClick={() => setTypeOfColor('rgb')}
+                >
+                    Create RGB Color
+                </button>
                 <button onClick={() => { generateRandomColor() }}>Generate Random Color</button>
             </div>
             <div className="colorSlider">
