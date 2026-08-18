@@ -6,4 +6,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [ ] Familiar with Git branches management 
 
 ## Project TODO List
-- [ ] 01_Accordian
+- [x] 01_Accordian
+- [ ] 02_RandomColor
