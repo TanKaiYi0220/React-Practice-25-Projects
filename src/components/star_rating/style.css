@@ -1,0 +1,23 @@
+.starContainer {
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-soft: #eaf1ff;
+  --text: #172033;
+  --heading: #111827;
+  --border: #d9e2ef;
+  --surface: rgba(255, 255, 255, 0.9);
+  --shadow: rgba(23, 32, 51, 0.12);
+
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, #dbeafe 0, transparent 420px),
+    linear-gradient(135deg, #f8fbff 0%, #eef3fa 100%);
+}
