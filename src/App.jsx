@@ -5,7 +5,7 @@ import RandomColor from './components/random_color/RandomColor'
 const App = () => {
   return (
     <>
-      <Accordion />
+      {/* <Accordion /> */}
       <RandomColor />
     </>    
   )
