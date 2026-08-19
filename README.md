@@ -9,4 +9,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 01_Accordian
 - [x] 02_RandomColor
 - [x] 03_StarRating
-- [ ] 04_ImageSlider
+- [x] 04_ImageSlider
+- [ ] 05_LoadMore
