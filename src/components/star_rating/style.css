@@ -1,12 +1,13 @@
 .starContainer {
   --accent: #2563eb;
-  --accent-dark: #1d4ed8;
   --accent-soft: #eaf1ff;
   --text: #172033;
   --heading: #111827;
   --border: #d9e2ef;
   --surface: rgba(255, 255, 255, 0.9);
   --shadow: rgba(23, 32, 51, 0.12);
+  --star-active: #f5b301;
+  --star-inactive: #c7d0dd;
 
   min-height: 100vh;
   width: 100%;
@@ -14,29 +15,61 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
   gap: 20px;
   padding: 40px 20px;
   color: var(--text);
+  text-align: center;
   background:
     radial-gradient(circle at top left, #dbeafe 0, transparent 420px),
     linear-gradient(135deg, #f8fbff 0%, #eef3fa 100%);
 }
 
+.ContextCard {
+  width: 520px;
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 18px 45px var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+.ContextCard h1 {
+  margin: 0 0 18px;
+  color: var(--heading);
+  font-size: 30px;
+  line-height: 1.2;
+}
+
 .starRow {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  padding: 40px 20px;
-  color: var(--text);
+  gap: 14px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--accent-soft);
+}
+
+.starRow svg {
+  cursor: pointer;
+  transition: color 220ms ease, transform 160ms ease, filter 220ms ease;
+}
+
+.starRow svg:hover {
+  transform: translateY(-3px) scale(1.12);
+}
+
+.starRow svg:active {
+  transform: translateY(1px) scale(0.86);
 }
 
 .starRow .active {
-  color: #ffff00;
+  color: var(--star-active);
+  filter: drop-shadow(0 4px 8px rgba(245, 179, 1, 0.35));
 }
 
 .starRow .inactive {
-  color: #000000;
+  color: var(--star-inactive);
+  filter: none;
 }
