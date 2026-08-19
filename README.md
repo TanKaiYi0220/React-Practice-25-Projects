@@ -8,4 +8,6 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 ## Project TODO List
 - [x] 01_Accordian
 - [x] 02_RandomColor
-- [ ] 03_StarRating
+- [x] 03_StarRating
+- [x] 04_ImageSlider
+- [ ] 05_LoadMore
