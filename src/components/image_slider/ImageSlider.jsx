@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { BsArrowLeftCircleFill, BsArrowRightCircleFill } from 'react-icons/bs'
 import "./style.css"
 
-const ImageSlider = ({ url, limit, page }) => {
+const ImageSlider = ({ url, limit, page, author, reverse }) => {
   const [images, setImages] = useState([]);
   const [imageIndex, setImageIndex] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -63,7 +63,10 @@ const ImageSlider = ({ url, limit, page }) => {
 
 
   return (
-    <div className="imageSliderContainer">
+    <div className={`imageSliderContainer ${reverse ? 'reverse' : ''}`}>
+      <div className="authorContainer">
+        <h1>{author}</h1>
+      </div>
       <BsArrowLeftCircleFill onClick={() => { handlePrevious() }} className="arrow arrow-left" />
       <div className="imageContainer">
         {(loading)
