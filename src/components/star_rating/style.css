@@ -14,10 +14,29 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
   gap: 20px;
   padding: 40px 20px;
   color: var(--text);
   background:
     radial-gradient(circle at top left, #dbeafe 0, transparent 420px),
     linear-gradient(135deg, #f8fbff 0%, #eef3fa 100%);
+}
+
+.starRow {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  color: var(--text);
+}
+
+.starRow .active {
+  color: #ffff00;
+}
+
+.starRow .inactive {
+  color: #000000;
 }
