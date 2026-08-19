@@ -2,7 +2,7 @@
     min-height: 100vh;
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 20px;
@@ -12,4 +12,31 @@
     background:
         radial-gradient(circle at top left, #dbeafe 0, transparent 420px),
         linear-gradient(135deg, #f8fbff 0%, #eef3fa 100%);
+}
+
+.currentImage {
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 7px #666;
+    width: 100%;
+    height: 100%;
+}
+
+.hiddenImage {
+    display: none;
+}
+
+.arrow {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    color: #fff;
+    filter: drop-shadow(0px 0px 5px #555);
+}
+
+.arrow-left {
+    left: 1rem;
+}
+
+.arrow-right {
+    right: 1rem;
 }
