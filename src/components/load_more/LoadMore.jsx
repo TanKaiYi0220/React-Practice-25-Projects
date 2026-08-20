@@ -37,8 +37,8 @@ const LoadMore = () => {
 
             const nextProducts = [...products, ...data.products].slice(0, PRODUCT_MAX_LIMIT);
 
-            // setProducts(nextProducts);
-            setProducts((currentProducts) => [...currentProducts, ...data.products].slice(0, PRODUCT_MAX_LIMIT))
+            setProducts(nextProducts);
+            // setProducts((currentProducts) => [...currentProducts, ...data.products].slice(0, PRODUCT_MAX_LIMIT))
 
             if (nextProducts.length >= PRODUCT_MAX_LIMIT) {
                 setDisableLoading(true)
