@@ -1,10 +1,12 @@
 import React from 'react'
 import "./style.css"
+import MenuList from './MenuList'
+import menus from "./data.js"
 
 const TreeView = () => {
     return (
-        <div className="TreeViewContainer">
-            TreeView
+        <div className="treeViewContainer">
+            <MenuList list={menus} />
         </div>
     )
 }
