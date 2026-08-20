@@ -1,30 +1,171 @@
 .loadMoreContainer {
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    padding: 40px 20px;
-    color: var(--text);
-    text-align: center;
-    background:
-        radial-gradient(circle at top left, #dbeafe 0, transparent 420px),
-        linear-gradient(135deg, #f8fbff 0%, #eef3fa 100%);
+  --page-bg: #eef4fb;
+  --surface: rgba(255, 255, 255, 0.76);
+  --surface-strong: rgba(255, 255, 255, 0.94);
+  --border: rgba(95, 118, 150, 0.22);
+  --text: #172033;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.12);
+  --warm: #f97316;
+  --warm-soft: rgba(249, 115, 22, 0.14);
+  --shadow: rgba(24, 39, 75, 0.14);
+
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  color: var(--text);
+  text-align: center;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 420px),
+    radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.14), transparent 380px),
+    linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
+}
+
+.loadMoreContainer * {
+  box-sizing: border-box;
 }
 
 .productContainer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 14px;
-    padding: 18px;
+  width: 100%;
+  max-width: 1180px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 60px var(--shadow);
 }
 
 .productCard {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid;
-    gap: 10px;
-    padding: 20px;
+  min-height: 266px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 12px 28px rgba(24, 39, 75, 0.09);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.34);
+  box-shadow: 0 18px 36px rgba(24, 39, 75, 0.16);
+}
+
+.productCard img {
+  order: -1;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  padding: 12px;
+  border: 1px solid rgba(95, 118, 150, 0.14);
+  border-radius: 6px;
+  background: #f8fafc;
+}
+
+.productCard h1,
+.productCard h2 {
+  margin: 0;
+}
+
+.productCard h1 {
+  align-self: flex-start;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: var(--accent-dark);
+  background: var(--accent-soft);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.productCard h2 {
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.35;
+  font-weight: 700;
+  text-align: left;
+}
+
+.loadMoreButton,
+.infiniteScrollButton {
+  min-width: 220px;
+  height: 46px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, border-color 160ms ease;
+}
+
+.loadMoreButton {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  box-shadow: 0 14px 26px rgba(37, 99, 235, 0.26);
+}
+
+.infiniteScrollButton {
+  color: #9a3412;
+  border-color: rgba(249, 115, 22, 0.28);
+  background: rgba(255, 247, 237, 0.86);
+  backdrop-filter: blur(12px);
+}
+
+.loadMoreButton:hover,
+.infiniteScrollButton:hover {
+  transform: translateY(-2px);
+}
+
+.loadMoreButton:hover {
+  box-shadow: 0 18px 34px rgba(37, 99, 235, 0.34);
+}
+
+.infiniteScrollButton:hover {
+  border-color: rgba(249, 115, 22, 0.48);
+  background: #fff7ed;
+  box-shadow: 0 14px 26px rgba(249, 115, 22, 0.16);
+}
+
+.loadMoreButton:active,
+.infiniteScrollButton:active {
+  transform: translateY(1px);
+}
+
+.loadMoreButton:disabled,
+.infiniteScrollButton:disabled {
+  opacity: 0.58;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.loadMoreContainer > p {
+  margin: -8px 0 0;
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--muted);
+  background: var(--surface-strong);
+  backdrop-filter: blur(12px);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.loadMoreContainer > div:last-child {
+  width: 100%;
+  height: 1px;
 }

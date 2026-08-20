@@ -10,3 +10,4 @@
 - [x] `IntersectionObserver` built-in feature supports that implementation around `visibility` UI/UX
 
 ## CSS
+- [x] Product images use `object-fit: contain` so thumbnails are not cropped.
