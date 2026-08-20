@@ -2,21 +2,12 @@ import React, { useState } from 'react'
 import MenuList from './MenuList'
 import { FaMinus, FaPlus } from 'react-icons/fa'
 
-const MenuItem = ({ item }) => {
-    const [currentChild, setCurrentChild] = useState({});
+const MenuItem = ({ item, itemKey, expandedItems, handleToggle }) => {
+    const isExpanded = expandedItems[itemKey] === true;
 
     const hasChildren = (item) => {
         return item.children && item.children.length > 0;
     }
-
-    function handleToggleChildren(getCurrentLabel) {
-        setCurrentChild({
-            ...currentChild,
-            [getCurrentLabel]: !currentChild[getCurrentLabel]
-        })
-    }
-
-    console.log(currentChild);
 
     return (
         <li className="menuItemContainer">
@@ -24,11 +15,11 @@ const MenuItem = ({ item }) => {
                 <p>{item.label}</p>
                 {
                     (hasChildren(item))
-                        ? <span onClick={() => { handleToggleChildren(item.label) }}>
+                        ? <span onClick={() => { handleToggle(itemKey) }}>
                             {
-                                (currentChild[item.label]) 
-                                    ? <FaMinus className="collapseButton"/> 
-                                    : <FaPlus className="expandButton"/>
+                                (isExpanded)
+                                    ? <FaMinus className="collapseButton" />
+                                    : <FaPlus className="expandButton" />
                             }
                         </span>
                         : null
@@ -36,8 +27,13 @@ const MenuItem = ({ item }) => {
             </div>
 
             {
-                (hasChildren(item) && currentChild[item.label])
-                    ? <MenuList list={item.children} />
+                (hasChildren(item) && isExpanded)
+                    ? <MenuList
+                        list={item.children}
+                        parentKey={itemKey}
+                        expandedItems={expandedItems}
+                        handleToggle={handleToggle}
+                    />
                     : null
             }
 
