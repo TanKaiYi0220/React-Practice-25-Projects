@@ -11,4 +11,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 03_StarRating
 - [x] 04_ImageSlider
 - [x] 05_LoadMore
-- [ ] 06_TreeView
+- [x] 06_TreeView
+- [ ] 07_QRCode
