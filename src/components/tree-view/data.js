@@ -1,60 +1,66 @@
 export const menus = [
-  {
-    label: "Home",
-    to: "/",
-  },
-  {
-    label: "Profile",
-    to: "/profile",
-    children: [
-      {
-        label: "Details",
-        to: "details",
+    {
+        label: "Home",
+        to: "/",
+    },
+    {
+        label: "Profile",
+        to: "/profile",
         children: [
-          {
-            label: "Location",
-            to: "location",
-            children: [
-              {
-                label: "City",
-                to: "city",
-              },
-            ],
-          },
+            {
+                label: "Details",
+                to: "details",
+                children: [
+                    {
+                        label: "Location",
+                        to: "location",
+                        children: [
+                            {
+                                label: "City",
+                                to: "city",
+                                children: [
+                                    {
+                                        label: "Town",
+                                        to: "town"
+                                    }
+                                ]
+                            },
+                        ],
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  },
-  {
-    label: "Settings",
-    to: "/settings",
-    children: [
-      {
-        label: "Account",
-        to: "account",
-      },
-      {
-        label: "Security",
-        to: "security",
+    },
+    {
+        label: "Settings",
+        to: "/settings",
         children: [
-          {
-            label: "Login",
-            to: "login",
-          },
-          {
-            label: "Register",
-            to: "register",
-            children : [
-                {
-                    label : 'Random data',
-                    to : ''
-                }
-            ]
-          },
+            {
+                label: "Account",
+                to: "account",
+            },
+            {
+                label: "Security",
+                to: "security",
+                children: [
+                    {
+                        label: "Login",
+                        to: "login",
+                    },
+                    {
+                        label: "Register",
+                        to: "register",
+                        children: [
+                            {
+                                label: 'Random data',
+                                to: ''
+                            }
+                        ]
+                    },
+                ],
+            },
         ],
-      },
-    ],
-  },
+    },
 ];
 
 export default menus;

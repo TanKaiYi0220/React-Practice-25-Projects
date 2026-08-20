@@ -1,14 +1,112 @@
 .treeViewContainer {
+  --page-bg: #edf3fb;
+  --sidebar-bg: rgba(255, 255, 255, 0.78);
+  --item-bg: rgba(255, 255, 255, 0.62);
+  --item-hover: rgba(37, 99, 235, 0.1);
+  --border: rgba(95, 118, 150, 0.22);
+  --line: rgba(95, 118, 150, 0.24);
+  --text: #172033;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --shadow: rgba(24, 39, 75, 0.14);
+
   min-height: 100vh;
   width: 100%;
+  box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 40px 20px;
+  align-items: stretch;
+  justify-content: flex-start;
+  padding: 32px;
   color: var(--text);
+  text-align: left;
   background:
-    radial-gradient(circle at top left, #dbeafe 0, transparent 420px),
-    linear-gradient(135deg, #f8fbff 0%, #eef3fa 100%);
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 420px),
+    radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.12), transparent 380px),
+    linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
+}
+
+.treeViewContainer * {
+  box-sizing: border-box;
+}
+
+.menuListContainer {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.treeViewContainer > .menuListContainer {
+  width: 320px;
+  min-height: calc(100vh - 64px);
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--sidebar-bg);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 24px 60px var(--shadow);
+  overflow: auto;
+}
+
+.menuItemContainer {
+  margin: 4px 0;
+}
+
+.menuItem {
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 10px 0 12px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text);
+  background: transparent;
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.menuItem:hover {
+  border-color: rgba(37, 99, 235, 0.16);
+  background: var(--item-hover);
+  transform: translateX(2px);
+}
+
+.menuItem:active {
+  transform: translateX(0);
+}
+
+.menuItem p {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.3;
+  font-weight: 700;
+  color: inherit;
+}
+
+.expandButton,
+.collapseButton {
+  font-size: 12px;
+  pointer-events: none;
+}
+
+.collapseButton {
+  color: var(--accent);
+}
+
+.menuItemContainer > .menuListContainer {
+  margin: 4px 0 8px 12px;
+  padding-left: 14px;
+  border-left: 1px solid var(--line);
+}
+
+.menuItemContainer > .menuListContainer .menuItem {
+  min-height: 38px;
+  padding-left: 10px;
+  color: var(--muted);
+}
+
+.menuItemContainer > .menuListContainer .menuItem:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.66);
 }
