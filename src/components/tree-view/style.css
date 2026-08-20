@@ -1,0 +1,14 @@
+.treeViewContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px 20px;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, #dbeafe 0, transparent 420px),
+    linear-gradient(135deg, #f8fbff 0%, #eef3fa 100%);
+}
