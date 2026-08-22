@@ -7,6 +7,7 @@ import ImageGallery from './components/image_slider/ImageGallery'
 import LoadMore from './components/load_more/LoadMore'
 import TreeView from './components/tree-view/TreeView'
 import QRCodeGenerator from './components/qr-code/QRCodeGenerator'
+import ChangeTheme from './components/change_theme/ChangeTheme'
 
 const App = () => {
   return (
@@ -18,7 +19,8 @@ const App = () => {
       {/* <ImageGallery url={"https://picsum.photos/v2/list"}/> */}
       {/* <LoadMore /> */}
       {/* <TreeView /> */}
-      <QRCodeGenerator />
+      {/* <QRCodeGenerator /> */}
+      <ChangeTheme />
     </>
   )
 }
