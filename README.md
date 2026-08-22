@@ -13,4 +13,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 05_LoadMore
 - [x] 06_TreeView
 - [x] 07_QRCode
-- [ ] 08_ChangeTheme
+- [x] 08_ChangeTheme
+- [ ] 09_ScrollIndicator
