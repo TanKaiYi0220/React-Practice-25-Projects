@@ -1,39 +1,121 @@
 .changeThemeContainer {
-  --background: #fff;
-  --text-primary: #222;
-  --button-bg: #222;
-  --buton-text: #fff;
+  --page-bg: #eef4fb;
+  --page-glow-one: rgba(37, 99, 235, 0.18);
+  --page-glow-two: rgba(16, 185, 129, 0.13);
+  --card-bg: rgba(255, 255, 255, 0.82);
+  --card-border: rgba(95, 118, 150, 0.22);
+  --text-primary: #172033;
+  --text-muted: #64748b;
+  --button-bg: #172033;
+  --button-text: #ffffff;
+  --button-shadow: rgba(24, 39, 75, 0.22);
+  --accent: #2563eb;
+  --shadow: rgba(24, 39, 75, 0.14);
 
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
   display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  color: var(--text-primary);
+  text-align: center;
+  background:
+    radial-gradient(circle at top left, var(--page-glow-one), transparent 420px),
+    radial-gradient(circle at bottom right, var(--page-glow-two), transparent 380px),
+    linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
+  transition: background 260ms ease, color 260ms ease;
+}
+
+.changeThemeContainer * {
+  box-sizing: border-box;
+}
+.changeThemeContainer[data-theme="dark"] {
+  --page-bg: #0f172a;
+  --page-glow-one: rgba(59, 130, 246, 0.2);
+  --page-glow-two: rgba(20, 184, 166, 0.16);
+  --card-bg: rgba(15, 23, 42, 0.82);
+  --card-border: rgba(148, 163, 184, 0.22);
+  --text-primary: #f8fafc;
+  --text-muted: #94a3b8;
+  --button-bg: #f8fafc;
+  --button-text: #0f172a;
+  --button-shadow: rgba(15, 23, 42, 0.38);
+  --accent: #38bdf8;
+  --shadow: rgba(0, 0, 0, 0.28);
+}
+.contextContainer {
+  width: 420px;
+  min-height: 260px;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 22px;
-  padding: 48px;
-  color: var(--text);
-  text-align: center;
-  background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 420px),
-    radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.12), transparent 380px),
-    linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
-}
-
-[data-theme="dark"] {
-  --background: #222;
-  --text-primary: #fff;
-  --button-bg: #fff;
-  --buton-text: #222;
-}
-
-.contextContainer {
-  background: var(--background);
+  gap: 24px;
+  padding: 36px;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
   color: var(--text-primary);
+  background: var(--card-bg);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 24px 60px var(--shadow);
+  transition: background-color 260ms ease, border-color 260ms ease, color 260ms ease, box-shadow 260ms ease;
+}
+.contextContainer p {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 42px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: 0;
 }
 
+.contextContainer p::after {
+  content: "Theme preview";
+  display: block;
+  margin-top: 12px;
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 700;
+}
 .changeThemeButton {
-  background-color: var(--button-bg);
-  color: var(--buton-text)
+  min-width: 180px;
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  color: var(--button-text);
+  background: var(--button-bg);
+  box-shadow: 0 14px 28px var(--button-shadow);
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 260ms ease, color 260ms ease;
+}
+
+.changeThemeButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 36px var(--button-shadow);
+}
+
+.changeThemeButton:active {
+  transform: translateY(1px);
+}
+.contextContainer::before {
+  content: "";
+  width: 54px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 24px var(--accent);
+}
+
+.changeThemeContainer[data-theme="light"] .changeThemeButton::after {
+  content: " to dark";
+}
+
+.changeThemeContainer[data-theme="dark"] .changeThemeButton::after {
+  content: " to light";
 }
