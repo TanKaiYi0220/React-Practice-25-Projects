@@ -1,4 +1,9 @@
 .changeThemeContainer {
+  --background: #fff;
+  --text-primary: #222;
+  --button-bg: #222;
+  --buton-text: #fff;
+
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
@@ -14,4 +19,21 @@
     radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 420px),
     radial-gradient(circle at bottom right, rgba(16, 185, 129, 0.12), transparent 380px),
     linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
+}
+
+[data-theme="dark"] {
+  --background: #222;
+  --text-primary: #fff;
+  --button-bg: #fff;
+  --buton-text: #222;
+}
+
+.contextContainer {
+  background: var(--background);
+  color: var(--text-primary);
+}
+
+.changeThemeButton {
+  background-color: var(--button-bg);
+  color: var(--buton-text)
 }
