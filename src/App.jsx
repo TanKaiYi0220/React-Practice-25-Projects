@@ -8,6 +8,7 @@ import LoadMore from './components/load_more/LoadMore'
 import TreeView from './components/tree-view/TreeView'
 import QRCodeGenerator from './components/qr-code/QRCodeGenerator'
 import ChangeTheme from './components/change_theme/ChangeTheme'
+import ScrollIndicator from './components/scroll_indicator/ScrollIndicator'
 
 const App = () => {
   return (
@@ -20,7 +21,8 @@ const App = () => {
       {/* <LoadMore /> */}
       {/* <TreeView /> */}
       {/* <QRCodeGenerator /> */}
-      <ChangeTheme />
+      {/* <ChangeTheme /> */}
+      <ScrollIndicator />
     </>
   )
 }
