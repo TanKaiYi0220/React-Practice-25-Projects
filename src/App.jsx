@@ -22,7 +22,7 @@ const App = () => {
       {/* <TreeView /> */}
       {/* <QRCodeGenerator /> */}
       {/* <ChangeTheme /> */}
-      <ScrollIndicator />
+      <ScrollIndicator url={'https://dummyjson.com/products?limit=100'} />
     </>
   )
 }

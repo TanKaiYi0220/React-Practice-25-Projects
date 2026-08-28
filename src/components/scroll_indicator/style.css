@@ -4,18 +4,34 @@
   --page-glow-two: rgba(16, 185, 129, 0.13);
   --text-primary: #172033;
 
-  min-height: 100vh;
+  min-height: 10px;
+  top: 0;
   width: 100%;
   box-sizing: border-box;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 48px;
   color: var(--text-primary);
   text-align: center;
+  position: fixed;
+  z-index: 1;
   background:
     radial-gradient(circle at top left, var(--page-glow-one), transparent 420px),
     radial-gradient(circle at bottom right, var(--page-glow-two), transparent 380px),
     linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
   transition: background 260ms ease, color 260ms ease;
+}
+
+.scrollProgressBarContainer {
+  width: 100%;
+  height: 10px;
+  background: #aaf900;
+}
+
+.scrollProgressBar {
+  width: 0%;
+  height: 10px;
+  background: #8b02b5;
 }
