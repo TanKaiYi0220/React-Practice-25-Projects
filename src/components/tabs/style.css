@@ -1,0 +1,20 @@
+.tabsContainer {
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-soft: #eaf1ff;
+  --text: #172033;
+  --heading: #111827;
+  --border: #d9e2ef;
+  --surface: rgba(255, 255, 255, 0.9);
+  --shadow: rgba(23, 32, 51, 0.12);
+
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 20px;
+  background:
+    radial-gradient(circle at top left, var(--theme-page-glow), transparent 32rem),
+    linear-gradient(135deg, var(--theme-page-start) 0%, var(--theme-page-end) 100%);
+}

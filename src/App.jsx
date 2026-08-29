@@ -9,6 +9,7 @@ import TreeView from './components/tree-view/TreeView'
 import QRCodeGenerator from './components/qr-code/QRCodeGenerator'
 import ChangeTheme from './components/change_theme/ChangeTheme'
 import ScrollIndicator from './components/scroll_indicator/ScrollIndicator'
+import Tabs from './components/tabs/Tabs'
 
 const App = () => {
   return (
@@ -22,7 +23,8 @@ const App = () => {
       {/* <TreeView /> */}
       {/* <QRCodeGenerator /> */}
       {/* <ChangeTheme /> */}
-      <ScrollIndicator url={'https://dummyjson.com/products?limit=100'} />
+      {/* <ScrollIndicator url={'https://dummyjson.com/products?limit=100'} /> */}
+      <Tabs />
     </>
   )
 }
