@@ -6,6 +6,7 @@ const ScrollIndicator = ({ url }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
     const [scrollPercentage, setScrollPercentage] = useState(0);
+    const wallpaperMove = (scrollPercentage - 100) * 2.4;
 
     async function fetchData(getUrl) {
         setLoading(true);
@@ -23,14 +24,20 @@ const ScrollIndicator = ({ url }) => {
     }
 
     function handleScrollPercentage() {
-        // window.scrollY: A modern, standard web API property
-        // document.documentElement.scrollTop: An older fallback property
-        const scrolled = window.scrollY || document.documentElement.scrollTop; // cross-browser compatibility
-
+        const scrolled = window.scrollY || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
 
-        setScrollPercentage((scrolled / height) * 100);
+        if (height === 0) {
+            setScrollPercentage(0);
+            return;
+        }
+
+        const nextPercentage = (scrolled / height) * 100;
+        const safePercentage = Math.max(0, Math.min(nextPercentage, 100));
+
+        setScrollPercentage(safePercentage);
     }
+
 
     useEffect(() => {
         fetchData(url);
@@ -40,7 +47,7 @@ const ScrollIndicator = ({ url }) => {
         window.addEventListener('scroll', handleScrollPercentage);
 
         return () => {
-            window.removeEventListener('scroll', () => { })
+            window.removeEventListener('scroll', handleScrollPercentage)
         }
     }, [])
 
@@ -54,6 +61,14 @@ const ScrollIndicator = ({ url }) => {
                         style={{ width: `${scrollPercentage}%` }}>
 
                     </div>
+                </div>
+                <div className="wallpaperWindow">
+                    <img
+                        className="wallpaperImage"
+                        src="/wallpaper.png"
+                        alt=""
+                        style={{ transform: `translateX(${wallpaperMove}px)` }}
+                    />
                 </div>
             </div>
             <div className="scrollDataContainer">
