@@ -1,37 +1,110 @@
-.scrollIndicatorContainer {
-  --page-bg: #eef4fb;
-  --page-glow-one: rgba(37, 99, 235, 0.18);
-  --page-glow-two: rgba(16, 185, 129, 0.13);
-  --text-primary: #172033;
+body {
+  --scroll-page-bg: #eef4fb;
+  --scroll-page-glow-one: rgba(37, 99, 235, 0.24);
+  --scroll-page-glow-two: rgba(20, 184, 166, 0.20);
+  --scroll-panel-bg: rgba(255, 255, 255, 0.78);
+  --scroll-panel-border: rgba(95, 118, 150, 0.24);
+  --scroll-text-primary: #172033;
+  --scroll-text-muted: #64748b;
+  --scroll-accent: #2563eb;
+  --scroll-accent-two: #14b8a6;
+  --scroll-track-bg: rgba(255, 255, 255, 0.64);
+  --scroll-card-bg: rgba(255, 255, 255, 0.84);
+  --scroll-shadow: rgba(24, 39, 75, 0.14);
 
-  min-height: 10px;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--scroll-page-bg);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.scrollIndicatorContainer {
+  position: fixed;
   top: 0;
+  left: 0;
+  z-index: 10;
   width: 100%;
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 48px;
-  color: var(--text-primary);
+  padding: 22px 48px 20px;
+  color: var(--scroll-text-primary);
   text-align: center;
-  position: fixed;
-  z-index: 1;
   background:
-    radial-gradient(circle at top left, var(--page-glow-one), transparent 420px),
-    radial-gradient(circle at bottom right, var(--page-glow-two), transparent 380px),
-    linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
-  transition: background 260ms ease, color 260ms ease;
+    radial-gradient(circle at top left, var(--scroll-page-glow-one), transparent 420px),
+    radial-gradient(circle at bottom right, var(--scroll-page-glow-two), transparent 380px),
+    linear-gradient(135deg, rgba(248, 251, 255, 0.90) 0%, rgba(238, 244, 251, 0.86) 100%);
+  border-bottom: 1px solid var(--scroll-panel-border);
+  box-shadow: 0 16px 36px var(--scroll-shadow);
+  backdrop-filter: blur(14px);
+}
+
+.scrollIndicatorContainer * {
+  box-sizing: border-box;
+}
+
+.scrollIndicatorTitle {
+  margin: 0 0 16px;
+  color: var(--scroll-text-primary);
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
 }
 
 .scrollProgressBarContainer {
   width: 100%;
-  height: 10px;
-  background: #aaf900;
+  max-width: 980px;
+  height: 14px;
+  margin: 0 auto;
+  padding: 3px;
+  background: var(--scroll-track-bg);
+  border: 1px solid var(--scroll-panel-border);
+  border-radius: 999px;
+  box-shadow: inset 0 2px 5px rgba(24, 39, 75, 0.12);
 }
 
 .scrollProgressBar {
-  width: 0%;
-  height: 10px;
-  background: #8b02b5;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--scroll-accent) 0%, var(--scroll-accent-two) 100%);
+  box-shadow: 0 0 18px rgba(37, 99, 235, 0.40);
+  transition: width 140ms ease-out;
+}
+
+.scrollDataContainer {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  padding: 156px 48px 56px;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.12), transparent 460px),
+    radial-gradient(circle at bottom right, rgba(20, 184, 166, 0.14), transparent 420px),
+    linear-gradient(135deg, #f8fbff 0%, var(--scroll-page-bg) 100%);
+}
+
+.scrollDataCard {
+  margin: 0;
+  min-height: 74px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  padding: 18px 20px;
+  color: var(--scroll-text-primary);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.45;
+  background: var(--scroll-card-bg);
+  border: 1px solid var(--scroll-panel-border);
+  border-radius: 8px;
+  box-shadow: 0 14px 32px var(--scroll-shadow);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.scrollDataCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(37, 99, 235, 0.42);
+  box-shadow: 0 20px 42px rgba(24, 39, 75, 0.18);
 }

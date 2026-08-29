@@ -20,8 +20,6 @@ const ScrollIndicator = ({ url }) => {
         } finally {
             setLoading(false);
         }
-
-        console.log(loading);
     }
 
     function handleScrollPercentage() {
