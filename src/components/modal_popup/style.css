@@ -1,0 +1,29 @@
+.modalContainer {
+  --page-bg: #eef4fb;
+  --surface: rgba(255, 255, 255, 0.76);
+  --surface-strong: rgba(255, 255, 255, 0.94);
+  --border: rgba(95, 118, 150, 0.22);
+  --text: #172033;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-soft: rgba(37, 99, 235, 0.12);
+  --warm: #f97316;
+  --warm-soft: rgba(249, 115, 22, 0.14);
+  --shadow: rgba(24, 39, 75, 0.14);
+
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  color: var(--text);
+  text-align: center;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 420px),
+    radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.14), transparent 380px),
+    linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
+}
