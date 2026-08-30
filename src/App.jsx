@@ -11,6 +11,7 @@ import ChangeTheme from './components/change_theme/ChangeTheme'
 import ScrollIndicator from './components/scroll_indicator/ScrollIndicator'
 import HomeTabs from './components/tabs/HomeTabs'
 import ModalHome from './components/modal_popup/ModalHome'
+import GithubProfileFinder from './components/github_profile_finder/GithubProfileFinder'
 
 const App = () => {
   return (
@@ -26,7 +27,8 @@ const App = () => {
       {/* <ChangeTheme /> */}
       {/* <ScrollIndicator url={'https://dummyjson.com/products?limit=100'} /> */}
       {/* <HomeTabs /> */}
-      <ModalHome />
+      {/* <ModalHome /> */}
+      <GithubProfileFinder />
     </>
   )
 }
