@@ -1,29 +1,286 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #eef4fb;
+}
+
 .modalHomeContainer {
   --page-bg: #eef4fb;
-  --surface: rgba(255, 255, 255, 0.76);
+  --surface: rgba(255, 255, 255, 0.82);
   --surface-strong: rgba(255, 255, 255, 0.94);
-  --border: rgba(95, 118, 150, 0.22);
+  --border: rgba(95, 118, 150, 0.24);
   --text: #172033;
   --muted: #64748b;
   --accent: #2563eb;
   --accent-dark: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.12);
   --warm: #f97316;
-  --warm-soft: rgba(249, 115, 22, 0.14);
   --shadow: rgba(24, 39, 75, 0.14);
 
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
-  padding: 48px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  justify-content: center;
+  padding: 48px;
   color: var(--text);
   text-align: center;
   background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 420px),
-    radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.14), transparent 380px),
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.20), transparent 420px),
+    radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.16), transparent 380px),
     linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
+}
+
+.modalHomeContainer * {
+  box-sizing: border-box;
+}
+
+.modalHomeContent {
+  width: 560px;
+  max-width: 100%;
+  padding: 34px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  box-shadow: 0 24px 60px var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+.modalHomeTitle {
+  margin-bottom: 14px;
+}
+
+.modalHomeEyebrow {
+  margin: 0 0 8px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.modalHomeTitle h1 {
+  margin: 0;
+  color: var(--text);
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.modalHomeDescription {
+  margin: 0 auto 22px;
+  max-width: 430px;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.modalSavedPreview {
+  margin: 0 0 24px;
+  padding: 18px;
+  text-align: left;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.modalSavedPreview span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.modalSavedPreview strong {
+  display: block;
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.modalPopupButton,
+.modalSaveChangesButton,
+.modalCloseButton,
+.modalIconButton {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+}
+
+.modalPopupButton,
+.modalSaveChangesButton {
+  min-height: 46px;
+  padding: 0 24px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+  border-radius: 8px;
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.26);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.modalPopupButton:hover,
+.modalSaveChangesButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(37, 99, 235, 0.32);
+}
+
+.modalPopupButton:active,
+.modalSaveChangesButton:active,
+.modalCloseButton:active,
+.modalIconButton:active {
+  transform: scale(0.98);
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  background: rgba(15, 23, 42, 0.54);
+  backdrop-filter: blur(10px);
+  animation: modalFadeIn 180ms ease;
+}
+
+.modalContainer {
+  width: 560px;
+  max-width: 100%;
+  overflow: hidden;
+  text-align: left;
+  background: var(--surface-strong);
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  border-radius: 8px;
+  box-shadow: 0 28px 80px rgba(15, 23, 42, 0.34);
+  animation: modalSlideIn 220ms ease;
+}
+
+.modalHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 26px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modalEyebrow {
+  margin: 0 0 8px;
+  color: var(--warm);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.modalHeader h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.modalIconButton {
+  width: 36px;
+  height: 36px;
+  color: var(--muted);
+  font-size: 18px;
+  font-weight: 800;
+  background: rgba(226, 232, 240, 0.72);
+  border-radius: 8px;
+  transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+}
+
+.modalIconButton:hover {
+  color: var(--text);
+  background: rgba(203, 213, 225, 0.9);
+}
+
+.modalBody {
+  padding: 24px 26px 10px;
+}
+
+.modalInputLabel {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.modalTextarea {
+  width: 100%;
+  min-height: 130px;
+  resize: vertical;
+  padding: 14px 16px;
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.modalTextarea:focus {
+  border-color: rgba(37, 99, 235, 0.62);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.14);
+}
+
+.modalHelperText {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.modalFooter {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 20px 26px 26px;
+}
+
+.modalCloseButton {
+  min-height: 46px;
+  padding: 0 20px;
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 800;
+  background: rgba(226, 232, 240, 0.78);
+  border-radius: 8px;
+  transition: background 180ms ease, transform 180ms ease;
+}
+
+.modalCloseButton:hover {
+  background: rgba(203, 213, 225, 0.9);
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }

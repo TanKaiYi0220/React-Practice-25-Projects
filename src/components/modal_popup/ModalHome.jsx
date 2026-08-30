@@ -4,13 +4,17 @@ import Modal from './Modal';
 
 const ModalHome = () => {
     const [showModalPopup, setShowModalPopup] = useState(false);
-    const [modalBody, setModalBody] = useState("");
+    const [modalBody, setModalBody] = useState("No saved message yet.");
 
-    function saveModalBody(newBody){
+    function openModal() {
+        setShowModalPopup(true);
+    }
+
+    function saveModalBody(newBody) {
         setModalBody(newBody);
     }
-    
-    function closeModal(){
+
+    function closeModal() {
         setShowModalPopup(false);
     }
 
@@ -19,9 +23,12 @@ const ModalHome = () => {
             <div className="modalHomeTitle">
                 <h1>Modal Home</h1>
             </div>
+            <div className="modalSavedPreview">
+                <strong>{modalBody}</strong>
+            </div>
             <button
                 className="modalPopupButton"
-                onClick={() => { setShowModalPopup(!showModalPopup) }}>
+                onClick={openModal}>
                 Open Modal Popup
             </button>
             {
