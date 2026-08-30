@@ -15,4 +15,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 07_QRCode
 - [x] 08_ChangeTheme
 - [x] 09_ScrollIndicator
-- [ ] 10_Tabs
+- [x] 10_Tabs
+- [ ] 11_ModalPopup
