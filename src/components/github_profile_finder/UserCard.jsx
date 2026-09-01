@@ -3,52 +3,60 @@ import React from 'react'
 const UserCard = ({ user }) => {
     const {
         avatar_url,
+        bio,
+        created_at,
         followers,
         following,
-        public_repos,
-        url,
-        name,
+        html_url,
         login,
-        created_at
+        name,
+        public_repos
     } = user;
 
     const createdDate = new Date(created_at);
+    const formattedDate = createdDate.toLocaleDateString("en-us", {
+        day: "numeric",
+        month: "short",
+        year: "numeric"
+    });
 
     return (
         <div className="userCard">
             <div className="avatarContainer">
-
-                <img src={avatar_url} className="userAvatar" alt="User" />
+                <img src={avatar_url} className="userAvatar" alt={`${login} avatar`} />
             </div>
 
-            <div className="urlContainer">
-                <a className="userUrl" href={`https://github.com/${login}`}>{name || login}</a>
-            </div>
+            <div className="userProfileContent">
+                <div className="urlContainer">
+                    <p className="profileLabel">GitHub Profile</p>
+                    <a className="userUrl" href={html_url} target="_blank" rel="noreferrer">
+                        {name || login}
+                    </a>
+                    <p className="userLogin">@{login}</p>
+                </div>
 
-            <div className="userInfo">
+                <p className="userBio">
+                    {bio || "This user has not added a bio yet."}
+                </p>
+
                 <div className="userJoinedDate">
-                    <p>User joined on</p>
-                    <p>
-                        User joined on
-                        {
-                            `  ${createdDate.getDate()} 
-                        ${createdDate.toLocaleString("en-us", {
-                                month: "short"
-                            })}
-                        ${createdDate.getFullYear()}`
-                        }</p>
+                    <span>Joined</span>
+                    <strong>{formattedDate}</strong>
                 </div>
-                <div className="userPublicRepo">
-                    <p>Public Repos</p>
-                    <p>{public_repos}</p>
-                </div>
-                <div className="userFollowers">
-                    <p>Followers</p>
-                    <p>{followers}</p>
-                </div>
-                <div className="userFollowing">
-                    <p>Following</p>
-                    <p>{following}</p>
+
+                <div className="userInfo">
+                    <div className="userPublicRepo">
+                        <span>Repos</span>
+                        <strong>{public_repos}</strong>
+                    </div>
+                    <div className="userFollowers">
+                        <span>Followers</span>
+                        <strong>{followers}</strong>
+                    </div>
+                    <div className="userFollowing">
+                        <span>Following</span>
+                        <strong>{following}</strong>
+                    </div>
                 </div>
             </div>
         </div>

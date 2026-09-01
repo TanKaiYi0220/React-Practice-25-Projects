@@ -7,7 +7,9 @@ const GithubProfileFinder = () => {
     const [userData, setUserData] = useState(null);
     const [loading, setLoading] = useState(false);
 
-    function handleSearchSubmit() {
+    function handleSearchSubmit(event) {
+        console.log("Submitted")
+        event.preventDefault();
         fetchGithubUserData();
     }
 
@@ -34,23 +36,40 @@ const GithubProfileFinder = () => {
 
     return (
         <div className="githubProfileFinderContainer">
-            <div className="searchBox">
-                <input
-                    className="userNameInput"
-                    type="text"
-                    value={userName}
-                    onChange={(e) => { setUserName(e.target.value) }}
-                    placeholder="Search Github Username...">
-                </input>
-                <button onClick={handleSearchSubmit} className="searchBox">
-                    Search
-                </button>
+            <div className="githubFinderPanel">
+                <div className="githubFinderHeader">
+                    <p className="githubFinderEyebrow">GitHub API</p>
+                    <h1>Profile Finder</h1>
+                    <p className="githubFinderDescription">
+                        Search a username and preview the account profile, activity numbers, and join date.
+                    </p>
+                </div>
+
+                <form className="searchBox" onSubmit={handleSearchSubmit}>
+                    <input
+                        className="userNameInput"
+                        type="text"
+                        value={userName}
+                        onChange={(e) => { setUserName(e.target.value) }}
+                        placeholder="Search GitHub username...">
+                    </input>
+
+                    <button
+                        type="submit"
+                        className="searchButton"
+                        disabled={loading}>
+                        {loading ? "Searching..." : "Search"}
+                    </button>
+                </form>
+
+                {loading && <p className="githubStatusText">Loading GitHub profile...</p>}
+
+                {
+                    userData
+                        ? <UserCard user={userData} />
+                        : null
+                }
             </div>
-            {
-                (userData)
-                    ? <UserCard user={userData} />
-                    : null
-            }
         </div>
     )
 }
