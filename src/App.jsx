@@ -12,6 +12,7 @@ import ScrollIndicator from './components/scroll_indicator/ScrollIndicator'
 import HomeTabs from './components/tabs/HomeTabs'
 import ModalHome from './components/modal_popup/ModalHome'
 import GithubProfileFinder from './components/github_profile_finder/GithubProfileFinder'
+import SearchAutoComplete from './components/search_auto_complete/SearchAutoComplete'
 
 const App = () => {
   return (
@@ -28,7 +29,8 @@ const App = () => {
       {/* <ScrollIndicator url={'https://dummyjson.com/products?limit=100'} /> */}
       {/* <HomeTabs /> */}
       {/* <ModalHome /> */}
-      <GithubProfileFinder />
+      {/* <GithubProfileFinder /> */}
+      <SearchAutoComplete />
     </>
   )
 }
