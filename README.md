@@ -17,4 +17,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 09_ScrollIndicator
 - [x] 10_Tabs
 - [x] 11_ModalPopup
-- [ ] 12_GithubProfileFinder
+- [x] 12_GithubProfileFinder
+- [ ] 13_SearchAutoComplete
