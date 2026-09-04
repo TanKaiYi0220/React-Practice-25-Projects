@@ -18,4 +18,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 10_Tabs
 - [x] 11_ModalPopup
 - [x] 12_GithubProfileFinder
-- [ ] 13_SearchAutoComplete
+- [x] 13_SearchAutoComplete
+- [ ] 14_TicTacToe
