@@ -20,6 +20,7 @@ const SearchAutoComplete = () => {
             setFilteredUsers(filteredData);
             setShowDropdown(true);
         } else {
+            setFilteredUsers([]);
             setShowDropdown(false);
         }
     }
@@ -53,21 +54,29 @@ const SearchAutoComplete = () => {
 
     return (
         <div className="searchAutoCompleteContainer">
-            <h1>Search Auto Complete</h1>
-            {
-                (loading)
-                    ? <h1>Waiting Loading</h1>
-                    : <input
-                        className="searchUsers"
-                        placeholder="Search Users Here..."
-                        value={searchParams}
-                        onChange={(e) => handleUserChange(e)} />
-            }
-            {
-                (showDropdown) 
-                    ? <SuggestionDropdown data={filteredUsers} handleClicked={handleSuggestionClicked}></SuggestionDropdown> 
-                    : null
-            }
+            <div className="searchAutoCompletePanel">
+                <div className="searchAutoCompleteHeader">
+                    <p className="searchAutoCompleteEyebrow">User Directory</p>
+                    <h1>Search Auto Complete</h1>
+                </div>
+
+                <div className="searchBox">
+                    {
+                        (loading)
+                            ? <p className="searchStatusText">Waiting Loading</p>
+                            : <input
+                                className="searchUsers"
+                                placeholder="Search Users Here..."
+                                value={searchParams}
+                                onChange={(e) => handleUserChange(e)} />
+                    }
+                    {
+                        (showDropdown)
+                            ? <SuggestionDropdown data={filteredUsers} handleClicked={handleSuggestionClicked}></SuggestionDropdown>
+                            : null
+                    }
+                </div>
+            </div>
         </div>
     )
 }
