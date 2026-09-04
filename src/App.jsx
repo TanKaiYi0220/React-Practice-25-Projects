@@ -13,6 +13,7 @@ import HomeTabs from './components/tabs/HomeTabs'
 import ModalHome from './components/modal_popup/ModalHome'
 import GithubProfileFinder from './components/github_profile_finder/GithubProfileFinder'
 import SearchAutoComplete from './components/search_auto_complete/SearchAutoComplete'
+import TicTacToe from './components/tic_tac_toe/TicTacToe'
 
 const App = () => {
   return (
@@ -30,7 +31,8 @@ const App = () => {
       {/* <HomeTabs /> */}
       {/* <ModalHome /> */}
       {/* <GithubProfileFinder /> */}
-      <SearchAutoComplete />
+      {/* <SearchAutoComplete /> */}
+      <TicTacToe />
     </>
   )
 }
