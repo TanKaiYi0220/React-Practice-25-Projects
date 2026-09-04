@@ -1,35 +1,53 @@
 body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: #eef4fb;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef4fb;
 }
 
 .gameContainer {
-  --page-bg: #eef4fb;
-  --surface: rgba(255, 255, 255, 0.82);
-  --surface-strong: rgba(255, 255, 255, 0.96);
-  --border: rgba(95, 118, 150, 0.24);
-  --text: #172033;
-  --muted: #64748b;
-  --accent: #2563eb;
-  --accent-dark: #1d4ed8;
-  --accent-soft: rgba(37, 99, 235, 0.1);
-  --warm: #f97316;
-  --danger: #dc2626;
-  --danger-soft: rgba(220, 38, 38, 0.1);
-  --shadow: rgba(24, 39, 75, 0.14);
+    --page-bg: #eef4fb;
+    --surface: rgba(255, 255, 255, 0.82);
+    --surface-strong: rgba(255, 255, 255, 0.96);
+    --border: rgba(95, 118, 150, 0.24);
+    --text: #172033;
+    --muted: #64748b;
+    --accent: #2563eb;
+    --accent-dark: #1d4ed8;
+    --accent-soft: rgba(37, 99, 235, 0.1);
+    --warm: #f97316;
+    --danger: #dc2626;
+    --danger-soft: rgba(220, 38, 38, 0.1);
+    --shadow: rgba(24, 39, 75, 0.14);
 
-  min-height: 100vh;
-  width: 100%;
-  box-sizing: border-box;
-  padding: 48px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text);
-  text-align: center;
-  background:
-    radial-gradient(circle at top left, rgba(37, 99, 235, 0.2), transparent 420px),
-    radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.16), transparent 380px),
-    linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
+    min-height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text);
+    text-align: center;
+    background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.2), transparent 420px),
+        radial-gradient(circle at bottom right, rgba(249, 115, 22, 0.16), transparent 380px),
+        linear-gradient(135deg, #f8fbff 0%, var(--page-bg) 100%);
+}
+
+.gameBoard {
+    display: flex;
+    flex-direction: column;
+}
+
+.gameCell {
+    border: 1px solid red;
+    float: left;
+    font-size: 40px;
+    height: 100px;
+    width: 100px;
+    padding: 0px;
+    text-align: center;
+    margin-right: -1px;
+    margin-top: -1px;
+    cursor: pointer;
 }
