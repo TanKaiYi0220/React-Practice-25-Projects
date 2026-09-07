@@ -10,6 +10,7 @@ import {
     getCurrentBoard,
     getRoundResult,
     getStatusText,
+    getGridSize,
 } from "./gameLogic"
 import "./style.css"
 
@@ -22,6 +23,7 @@ const TicTacToe = () => {
     const statusText = getStatusText(board, currentPlayer);
     const winningCells = roundResult?.winningCells || [];
     const isGameOver = Boolean(roundResult);
+    const gridSize = getGridSize();
 
     function handleCellClicked(index) {
         dispatch({ type: 'play', index });
@@ -39,6 +41,14 @@ const TicTacToe = () => {
         dispatch({ type: 'resetMatch' });
     }
 
+    function handle3X3Game(){
+        dispatch({type: 'create3X3'});
+    }
+    
+    function handle4X4Game(){
+        dispatch({type: 'create4X4'});
+    }
+
     return (
         <div className="gameContainer">
             <div className="gamePanel">
@@ -48,6 +58,11 @@ const TicTacToe = () => {
                     <p className="gameDescription">
                         A small game built with pure logic functions, a reducer, reusable board cells, scores, and move history.
                     </p>
+                </div>
+
+                <div className="gameMode">
+                    <button onClick={() => {handle3X3Game()}} className="game3X3Button">3x3</button>
+                    <button onClick={() => {handle4X4Game()}} className="game4X4Button">4x4</button>
                 </div>
 
                 <div className="gameLayout">
@@ -60,6 +75,7 @@ const TicTacToe = () => {
 
                         <GameBoard
                             board={board}
+                            gridSize={gridSize}
                             winningCells={winningCells}
                             isGameOver={isGameOver}
                             onPlay={handleCellClicked}

@@ -177,6 +177,16 @@ body {
   border-radius: 8px;
 }
 
+.gameBoard.game3x3 {
+  grid-template-columns: repeat(3, 112px);
+  grid-template-rows: repeat(3, 112px);
+}
+
+.gameBoard.game4x4 {
+  grid-template-columns: repeat(4, 72px);
+  grid-template-rows: repeat(4, 72px);
+}
+
 .gameCell {
   width: 112px;
   height: 112px;

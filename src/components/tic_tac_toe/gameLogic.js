@@ -1,9 +1,9 @@
 export const EMPTY_CELL = '';
 export const PLAYER_X = 'X';
 export const PLAYER_O = 'O';
-export const BOARD_LENGTH = 9;
+export var BOARD_LENGTH = 9;
 
-export const WINNING_PATTERNS = [
+export var WINNING_PATTERNS = [
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
@@ -43,7 +43,11 @@ export function getCurrentPlayer(state) {
     return state.currentMove % 2 === 0 ? PLAYER_X : PLAYER_O;
 }
 
-export function getWinnerInfo(board) {
+export function getGridSize() {
+    return BOARD_LENGTH;
+}
+
+export function getWinnerInfo3x3(board) {
     for (let i = 0; i < WINNING_PATTERNS.length; i++) {
         const winningCells = WINNING_PATTERNS[i];
         const [firstIndex, secondIndex, thirdIndex] = winningCells;
@@ -62,6 +66,32 @@ export function getWinnerInfo(board) {
     }
 
     return null;
+}
+
+export function getWinnerInfo4x4(board) {
+    for (let i = 0; i < WINNING_PATTERNS.length; i++) {
+        const winningCells = WINNING_PATTERNS[i];
+        const [firstIndex, secondIndex, thirdIndex, forthIndex] = winningCells;
+        const firstCell = board[firstIndex];
+
+        if (
+            firstCell !== EMPTY_CELL &&
+            firstCell === board[secondIndex] &&
+            firstCell === board[thirdIndex] &&
+            firstCell === board[forthIndex]
+        ) {
+            return {
+                winner: firstCell,
+                winningCells
+            };
+        }
+    }
+
+    return null;
+}
+
+export function getWinnerInfo(board) {
+    return (BOARD_LENGTH == 9) ? getWinnerInfo3x3(board) : getWinnerInfo4x4(board);
 }
 
 export function getIsBoardFull(board) {
@@ -197,6 +227,45 @@ export function resetMatch() {
     return createInitialState();
 }
 
+export function create3X3(state) {
+    BOARD_LENGTH = 9;
+    WINNING_PATTERNS = [
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        [0, 4, 8],
+        [2, 4, 6]
+    ];
+
+    return restartRound(state);
+}
+
+export function create4X4(state) {
+    BOARD_LENGTH = 16;
+    WINNING_PATTERNS = [
+        // Rows
+        [0, 1, 2, 3],
+        [4, 5, 6, 7],
+        [8, 9, 10, 11],
+        [12, 13, 14, 15],
+
+        // Columns
+        [0, 4, 8, 12],
+        [1, 5, 9, 13],
+        [2, 6, 10, 14],
+        [3, 7, 11, 15],
+
+        // Diagonals
+        [0, 5, 10, 15],
+        [3, 6, 9, 12],
+    ];
+
+    return restartRound(state);
+}
+
 export function gameReducer(state, action) {
     switch (action.type) {
         case 'play':
@@ -207,6 +276,10 @@ export function gameReducer(state, action) {
             return restartRound(state);
         case 'resetMatch':
             return resetMatch();
+        case 'create3X3':
+            return create3X3(state);
+        case 'create4X4':
+            return create4X4(state);
         default:
             return state;
     }
