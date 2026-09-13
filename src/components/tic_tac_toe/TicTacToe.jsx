@@ -1,29 +1,31 @@
 import React, { useReducer } from 'react'
 import GameBoard from './GameBoard'
 import GameStatus from './GameStatus'
+import GameModeSelector from './GameModeSelector'
 import ScoreBoard from './ScoreBoard'
 import MoveHistory from './MoveHistory'
 import {
-    createInitialState,
+    GAME_MODE_OPTIONS,
+    createDefaultState,
     gameReducer,
-    getCurrentPlayer,
     getCurrentBoard,
+    getCurrentGameMode,
+    getCurrentPlayer,
     getRoundResult,
-    getStatusText,
-    getGridSize,
-} from "./gameLogic"
+    getStatusText
+} from './gameLogic'
 import "./style.css"
 
 const TicTacToe = () => {
-    const [gameState, dispatch] = useReducer(gameReducer, undefined, createInitialState)
+    const [gameState, dispatch] = useReducer(gameReducer, undefined, createDefaultState)
 
+    const gameMode = getCurrentGameMode(gameState);
     const board = getCurrentBoard(gameState);
     const currentPlayer = getCurrentPlayer(gameState);
-    const roundResult = getRoundResult(board);
-    const statusText = getStatusText(board, currentPlayer);
+    const roundResult = getRoundResult(board, gameState.modeId);
+    const statusText = getStatusText(board, currentPlayer, gameState.modeId);
     const winningCells = roundResult?.winningCells || [];
     const isGameOver = Boolean(roundResult);
-    const gridSize = getGridSize();
 
     function handleCellClicked(index) {
         dispatch({ type: 'play', index });
@@ -41,12 +43,8 @@ const TicTacToe = () => {
         dispatch({ type: 'resetMatch' });
     }
 
-    function handle3X3Game(){
-        dispatch({type: 'create3X3'});
-    }
-    
-    function handle4X4Game(){
-        dispatch({type: 'create4X4'});
+    function handleChangeMode(modeId) {
+        dispatch({ type: 'changeMode', modeId });
     }
 
     return (
@@ -60,10 +58,11 @@ const TicTacToe = () => {
                     </p>
                 </div>
 
-                <div className="gameMode">
-                    <button onClick={() => {handle3X3Game()}} className="game3X3Button">3x3</button>
-                    <button onClick={() => {handle4X4Game()}} className="game4X4Button">4x4</button>
-                </div>
+                <GameModeSelector
+                    modes={GAME_MODE_OPTIONS}
+                    selectedModeId={gameState.modeId}
+                    onChangeMode={handleChangeMode}
+                />
 
                 <div className="gameLayout">
                     <main className="playArea">
@@ -75,7 +74,7 @@ const TicTacToe = () => {
 
                         <GameBoard
                             board={board}
-                            gridSize={gridSize}
+                            gameMode={gameMode}
                             winningCells={winningCells}
                             isGameOver={isGameOver}
                             onPlay={handleCellClicked}

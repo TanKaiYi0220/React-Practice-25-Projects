@@ -17,7 +17,6 @@ body {
   --accent-soft: rgba(37, 99, 235, 0.1);
   --x-color: #2563eb;
   --o-color: #f97316;
-  --o-soft: rgba(249, 115, 22, 0.12);
   --draw-color: #64748b;
   --shadow: rgba(24, 39, 75, 0.14);
 
@@ -51,7 +50,7 @@ body {
 }
 
 .gameHeader {
-  margin-bottom: 24px;
+  margin-bottom: 22px;
   text-align: center;
 }
 
@@ -78,6 +77,63 @@ body {
   font-size: 16px;
   font-weight: 600;
   line-height: 1.6;
+}
+
+.gameModeSelector {
+  width: 440px;
+  max-width: 100%;
+  margin: 0 auto 24px;
+  padding: 8px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.modeButton {
+  min-height: 58px;
+  padding: 8px 12px;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.modeButton:hover {
+  transform: translateY(-2px);
+  background: rgba(37, 99, 235, 0.08);
+}
+
+.modeButton span,
+.modeButton small {
+  display: block;
+}
+
+.modeButton span {
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.modeButton small {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.activeModeButton {
+  color: #ffffff;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.24);
+}
+
+.activeModeButton small {
+  color: rgba(255, 255, 255, 0.78);
 }
 
 .gameLayout {
@@ -167,29 +223,21 @@ body {
   margin: 0 auto;
   padding: 18px;
   display: grid;
-  grid-template-columns: repeat(3, 112px);
-  grid-template-rows: repeat(3, 112px);
+  grid-template-columns: repeat(var(--board-size), 1fr);
+  grid-template-rows: repeat(var(--board-size), 1fr);
   gap: 12px;
-  justify-content: center;
-  align-content: center;
   background: var(--board-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
 }
 
-.gameBoard.game3x3 {
-  grid-template-columns: repeat(3, 112px);
-  grid-template-rows: repeat(3, 112px);
-}
-
-.gameBoard.game4x4 {
-  grid-template-columns: repeat(4, 72px);
-  grid-template-rows: repeat(4, 72px);
+.gameBoard[data-board-size="4"] {
+  gap: 10px;
 }
 
 .gameCell {
-  width: 112px;
-  height: 112px;
+  width: 100%;
+  height: 100%;
   padding: 0;
   display: flex;
   align-items: center;
@@ -205,6 +253,10 @@ body {
   border-radius: 8px;
   box-shadow: 0 10px 22px rgba(24, 39, 75, 0.08);
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.gameBoard[data-board-size="4"] .gameCell {
+  font-size: 42px;
 }
 
 .gameCell:hover:not(:disabled) {

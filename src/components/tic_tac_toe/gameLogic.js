@@ -1,63 +1,141 @@
 export const EMPTY_CELL = '';
 export const PLAYER_X = 'X';
 export const PLAYER_O = 'O';
-export var BOARD_LENGTH = 9;
+export const DEFAULT_GAME_MODE_ID = 'threeByThree';
 
-export var WINNING_PATTERNS = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6]
-];
+export const GAME_MODES = {
+    threeByThree: {
+        id: 'threeByThree',
+        label: '3 x 3',
+        boardSize: 3,
+        winLength: 3
+    },
+    fourByFour: {
+        id: 'fourByFour',
+        label: '4 x 4',
+        boardSize: 4,
+        winLength: 4
+    }
+};
 
-export function createEmptyBoard() {
-    return Array(BOARD_LENGTH).fill(EMPTY_CELL);
+export const GAME_MODE_OPTIONS = Object.values(GAME_MODES);
+
+export function getGameMode(modeId) {
+    const gameMode = GAME_MODES[modeId];
+
+    if (!gameMode) {
+        throw new Error(`Unknown game mode: ${modeId}`);
+    }
+
+    return gameMode;
 }
 
-export function createInitialState() {
+export function getCellCount(gameMode) {
+    return gameMode.boardSize * gameMode.boardSize;
+}
+
+export function createEmptyBoard(gameMode) {
+    return Array(getCellCount(gameMode)).fill(EMPTY_CELL);
+}
+
+export function createEmptyScores() {
     return {
-        history: [createEmptyBoard()],
+        X: 0,
+        O: 0,
+        draws: 0
+    };
+}
+
+export function createInitialState(modeId) {
+    const gameMode = getGameMode(modeId);
+
+    return {
+        modeId: gameMode.id,
+        history: [createEmptyBoard(gameMode)],
         currentMove: 0,
-        scores: {
-            X: 0,
-            O: 0,
-            draws: 0
-        },
+        scores: createEmptyScores(),
         scoredResult: null
     };
+}
+
+export function createDefaultState() {
+    return createInitialState(DEFAULT_GAME_MODE_ID);
 }
 
 export function getCurrentBoard(state) {
     return state.history[state.currentMove];
 }
 
-export function getNextPlayer(player) {
-    return player === PLAYER_X ? PLAYER_O : PLAYER_X;
+export function getCurrentGameMode(state) {
+    return getGameMode(state.modeId);
 }
 
 export function getCurrentPlayer(state) {
     return state.currentMove % 2 === 0 ? PLAYER_X : PLAYER_O;
 }
 
-export function getGridSize() {
-    return BOARD_LENGTH;
+export function getBoardIndex(rowIndex, columnIndex, boardSize) {
+    return rowIndex * boardSize + columnIndex;
 }
 
-export function getWinnerInfo3x3(board) {
-    for (let i = 0; i < WINNING_PATTERNS.length; i++) {
-        const winningCells = WINNING_PATTERNS[i];
-        const [firstIndex, secondIndex, thirdIndex] = winningCells;
-        const firstCell = board[firstIndex];
+export function isInsideBoard(rowIndex, columnIndex, boardSize) {
+    return (
+        rowIndex >= 0 &&
+        rowIndex < boardSize &&
+        columnIndex >= 0 &&
+        columnIndex < boardSize
+    );
+}
 
-        if (
-            firstCell !== EMPTY_CELL &&
-            firstCell === board[secondIndex] &&
-            firstCell === board[thirdIndex]
-        ) {
+export function createWinningPatterns(boardSize, winLength) {
+    const directions = [
+        { rowStep: 0, columnStep: 1 },
+        { rowStep: 1, columnStep: 0 },
+        { rowStep: 1, columnStep: 1 },
+        { rowStep: 1, columnStep: -1 }
+    ];
+
+    const patterns = [];
+
+    for (let directionIndex = 0; directionIndex < directions.length; directionIndex++) {
+        const { rowStep, columnStep } = directions[directionIndex];
+
+        for (let rowIndex = 0; rowIndex < boardSize; rowIndex++) {
+            for (let columnIndex = 0; columnIndex < boardSize; columnIndex++) {
+                const endRowIndex = rowIndex + rowStep * (winLength - 1);
+                const endColumnIndex = columnIndex + columnStep * (winLength - 1);
+
+                if (!isInsideBoard(endRowIndex, endColumnIndex, boardSize)) continue;
+
+                const pattern = [];
+
+                for (let offset = 0; offset < winLength; offset++) {
+                    const nextRowIndex = rowIndex + rowStep * offset;
+                    const nextColumnIndex = columnIndex + columnStep * offset;
+                    pattern.push(getBoardIndex(nextRowIndex, nextColumnIndex, boardSize));
+                }
+
+                patterns.push(pattern);
+            }
+        }
+    }
+
+    return patterns;
+}
+
+export function getWinnerInfo(board, modeId) {
+    const gameMode = getGameMode(modeId);
+    const winningPatterns = createWinningPatterns(gameMode.boardSize, gameMode.winLength);
+
+    for (let i = 0; i < winningPatterns.length; i++) {
+        const winningCells = winningPatterns[i];
+        const firstCell = board[winningCells[0]];
+
+        if (firstCell === EMPTY_CELL) continue;
+
+        const hasWinningLine = winningCells.every((cellIndex) => board[cellIndex] === firstCell);
+
+        if (hasWinningLine) {
             return {
                 winner: firstCell,
                 winningCells
@@ -66,44 +144,18 @@ export function getWinnerInfo3x3(board) {
     }
 
     return null;
-}
-
-export function getWinnerInfo4x4(board) {
-    for (let i = 0; i < WINNING_PATTERNS.length; i++) {
-        const winningCells = WINNING_PATTERNS[i];
-        const [firstIndex, secondIndex, thirdIndex, forthIndex] = winningCells;
-        const firstCell = board[firstIndex];
-
-        if (
-            firstCell !== EMPTY_CELL &&
-            firstCell === board[secondIndex] &&
-            firstCell === board[thirdIndex] &&
-            firstCell === board[forthIndex]
-        ) {
-            return {
-                winner: firstCell,
-                winningCells
-            };
-        }
-    }
-
-    return null;
-}
-
-export function getWinnerInfo(board) {
-    return (BOARD_LENGTH == 9) ? getWinnerInfo3x3(board) : getWinnerInfo4x4(board);
 }
 
 export function getIsBoardFull(board) {
     return board.every((cell) => cell !== EMPTY_CELL);
 }
 
-export function getIsDraw(board) {
-    return !getWinnerInfo(board) && getIsBoardFull(board);
+export function getIsDraw(board, modeId) {
+    return !getWinnerInfo(board, modeId) && getIsBoardFull(board);
 }
 
-export function getRoundResult(board) {
-    const winnerInfo = getWinnerInfo(board);
+export function getRoundResult(board, modeId) {
+    const winnerInfo = getWinnerInfo(board, modeId);
 
     if (winnerInfo) {
         return {
@@ -113,7 +165,7 @@ export function getRoundResult(board) {
         };
     }
 
-    if (getIsDraw(board)) {
+    if (getIsDraw(board, modeId)) {
         return {
             type: 'draw'
         };
@@ -122,8 +174,8 @@ export function getRoundResult(board) {
     return null;
 }
 
-export function getStatusText(board, currentPlayer) {
-    const roundResult = getRoundResult(board);
+export function getStatusText(board, currentPlayer, modeId) {
+    const roundResult = getRoundResult(board, modeId);
 
     if (roundResult?.type === 'winner') {
         return `${roundResult.winner} wins this round`;
@@ -169,10 +221,11 @@ export function removeScore(scores, roundResult) {
 }
 
 export function applyMove(state, index) {
+    const gameMode = getCurrentGameMode(state);
     const board = getCurrentBoard(state);
-    const currentResult = getRoundResult(board);
+    const currentResult = getRoundResult(board, state.modeId);
 
-    if (!Number.isInteger(index) || index < 0 || index >= BOARD_LENGTH) return state;
+    if (!Number.isInteger(index) || index < 0 || index >= getCellCount(gameMode)) return state;
     if (currentResult || board[index] !== EMPTY_CELL) return state;
 
     const currentPlayer = getCurrentPlayer(state);
@@ -180,7 +233,7 @@ export function applyMove(state, index) {
     nextBoard[index] = currentPlayer;
 
     const nextHistory = [...state.history.slice(0, state.currentMove + 1), nextBoard];
-    const nextResult = getRoundResult(nextBoard);
+    const nextResult = getRoundResult(nextBoard, state.modeId);
     const nextScores = nextResult ? addScore(state.scores, nextResult) : state.scores;
 
     return {
@@ -198,7 +251,7 @@ export function jumpToMove(state, moveIndex) {
     }
 
     const targetBoard = state.history[moveIndex];
-    const targetResult = getRoundResult(targetBoard);
+    const targetResult = getRoundResult(targetBoard, state.modeId);
     const scoresWithoutCurrentResult = state.scoredResult
         ? removeScore(state.scores, state.scoredResult)
         : state.scores;
@@ -215,55 +268,26 @@ export function jumpToMove(state, moveIndex) {
 }
 
 export function restartRound(state) {
+    const gameMode = getCurrentGameMode(state);
+
     return {
         ...state,
-        history: [createEmptyBoard()],
+        history: [createEmptyBoard(gameMode)],
         currentMove: 0,
         scoredResult: null
     };
 }
 
-export function resetMatch() {
-    return createInitialState();
+export function resetMatch(state) {
+    return createInitialState(state.modeId);
 }
 
-export function create3X3(state) {
-    BOARD_LENGTH = 9;
-    WINNING_PATTERNS = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ];
+export function changeMode(state, modeId) {
+    const gameMode = getGameMode(modeId);
 
-    return restartRound(state);
-}
+    if (state.modeId === gameMode.id) return state;
 
-export function create4X4(state) {
-    BOARD_LENGTH = 16;
-    WINNING_PATTERNS = [
-        // Rows
-        [0, 1, 2, 3],
-        [4, 5, 6, 7],
-        [8, 9, 10, 11],
-        [12, 13, 14, 15],
-
-        // Columns
-        [0, 4, 8, 12],
-        [1, 5, 9, 13],
-        [2, 6, 10, 14],
-        [3, 7, 11, 15],
-
-        // Diagonals
-        [0, 5, 10, 15],
-        [3, 6, 9, 12],
-    ];
-
-    return restartRound(state);
+    return createInitialState(gameMode.id);
 }
 
 export function gameReducer(state, action) {
@@ -275,11 +299,9 @@ export function gameReducer(state, action) {
         case 'restartRound':
             return restartRound(state);
         case 'resetMatch':
-            return resetMatch();
-        case 'create3X3':
-            return create3X3(state);
-        case 'create4X4':
-            return create4X4(state);
+            return resetMatch(state);
+        case 'changeMode':
+            return changeMode(state, action.modeId);
         default:
             return state;
     }

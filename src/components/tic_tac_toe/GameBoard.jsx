@@ -1,18 +1,18 @@
 import React from 'react'
-import GameCell from './GameCell';
+import GameCell from './GameCell'
 
-function getBoardGridSize(gridSize=3) {
-    const boardClasses = ['gameBoard'];
+const GameBoard = ({ board, gameMode, winningCells, isGameOver, onPlay }) => {
+    const boardStyle = {
+        '--board-size': gameMode.boardSize
+    };
 
-    if (gridSize == 9) boardClasses.push('game3x3');
-    if (gridSize == 16) boardClasses.push('game4x4');
-
-    return boardClasses.join(' ');
-}
-
-const GameBoard = ({ board, gridSize, winningCells, isGameOver, onPlay }) => {
     return (
-        <div className={getBoardGridSize(gridSize)} role="grid" aria-label="Tic tac toe board">
+        <div
+            className="gameBoard"
+            data-board-size={gameMode.boardSize}
+            style={boardStyle}
+            role="grid"
+            aria-label={`${gameMode.label} tic tac toe board`}>
             {
                 board.map((value, index) => (
                     <GameCell
