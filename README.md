@@ -20,4 +20,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 12_GithubProfileFinder
 - [x] 13_SearchAutoComplete
 - [x] 14_TicTacToe
-- [ ] 15_FeatureFlag
+- [x] 15_FeatureFlag
+- [ ] 16_UseFetch
