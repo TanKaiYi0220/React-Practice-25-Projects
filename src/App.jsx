@@ -14,7 +14,7 @@ import ModalHome from './components/modal_popup/ModalHome'
 import GithubProfileFinder from './components/github_profile_finder/GithubProfileFinder'
 import SearchAutoComplete from './components/search_auto_complete/SearchAutoComplete'
 import TicTacToe from './components/tic_tac_toe/TicTacToe'
-import FeatureFlag from './components/feature_flag/FeatureFlag'
+import FeatureHome from './components/feature_flag/FeatureHome'
 
 const App = () => {
   return (
@@ -34,7 +34,7 @@ const App = () => {
       {/* <GithubProfileFinder /> */}
       {/* <SearchAutoComplete /> */}
       {/* <TicTacToe /> */}
-      <FeatureFlag />
+      <FeatureHome />
     </>
   )
 }
