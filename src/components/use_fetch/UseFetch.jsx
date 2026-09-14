@@ -8,7 +8,7 @@ function UseFetch(url, options = {}) {
     async function fetchData() {
         setPending(true);
         try {
-            const response = await fetch(url, {...options});
+            const response = await fetch(url, { ...options });
 
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -17,20 +17,20 @@ function UseFetch(url, options = {}) {
             const result = await response.json();
 
             setData(result);
+            setError(null);
         } catch (error) {
             setError(error);
         } finally {
             setPending(false);
-            setError(null);
         }
     }
 
     useEffect(() => {
-        fetchData(); 
+        fetchData();
     }, [url]);
 
 
-    return {data, error, pending}
+    return { data, error, pending }
 }
 
 export default UseFetch
