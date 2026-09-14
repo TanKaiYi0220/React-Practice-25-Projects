@@ -15,6 +15,7 @@ import GithubProfileFinder from './components/github_profile_finder/GithubProfil
 import SearchAutoComplete from './components/search_auto_complete/SearchAutoComplete'
 import TicTacToe from './components/tic_tac_toe/TicTacToe'
 import FeatureHome from './components/feature_flag/FeatureHome'
+import UseFetchHome from './components/use_fetch/UseFetchHome'
 
 const App = () => {
   return (
@@ -34,7 +35,8 @@ const App = () => {
       {/* <GithubProfileFinder /> */}
       {/* <SearchAutoComplete /> */}
       {/* <TicTacToe /> */}
-      <FeatureHome />
+      {/* <FeatureHome /> */}
+      <UseFetchHome />
     </>
   )
 }
