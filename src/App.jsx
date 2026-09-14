@@ -16,6 +16,7 @@ import SearchAutoComplete from './components/search_auto_complete/SearchAutoComp
 import TicTacToe from './components/tic_tac_toe/TicTacToe'
 import FeatureHome from './components/feature_flag/FeatureHome'
 import UseFetchHome from './components/use_fetch/UseFetchHome'
+import UseOnClickOutsideHome from './components/use_on_click_outside/UseOnClickOutsideHome'
 
 const App = () => {
   return (
@@ -36,7 +37,8 @@ const App = () => {
       {/* <SearchAutoComplete /> */}
       {/* <TicTacToe /> */}
       {/* <FeatureHome /> */}
-      <UseFetchHome />
+      {/* <UseFetchHome /> */}
+      <UseOnClickOutsideHome />
     </>
   )
 }
