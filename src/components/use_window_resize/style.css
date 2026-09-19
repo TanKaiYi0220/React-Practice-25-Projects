@@ -1,0 +1,45 @@
+:root {
+    --page-bg-start: #eef4ff;
+    --page-bg-end: #f8fbff;
+    --panel-bg: rgba(255, 255, 255, 0.78);
+    --popup-bg: rgba(255, 255, 255, 0.92);
+    --border-color: rgba(111, 130, 160, 0.24);
+    --text-color: #172033;
+    --muted-color: #667085;
+    --accent-color: #2563eb;
+    --accent-dark: #1d4ed8;
+    --accent-soft: rgba(37, 99, 235, 0.12);
+    --shadow-color: rgba(31, 45, 75, 0.16);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    color: var(--text-color);
+    background:
+        radial-gradient(circle at 18% 12%, rgba(37, 99, 235, 0.18), transparent 32%),
+        radial-gradient(circle at 82% 0%, rgba(14, 165, 233, 0.16), transparent 30%),
+        linear-gradient(135deg, var(--page-bg-start), var(--page-bg-end));
+}
+
+.useWindowResizeContainer {
+    position: relative;
+    width: 960px;
+    min-height: 520px;
+    margin: 72px auto;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    background: var(--panel-bg);
+    box-shadow: 0 24px 70px var(--shadow-color);
+    backdrop-filter: blur(18px);
+}

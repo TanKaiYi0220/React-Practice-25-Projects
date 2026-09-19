@@ -22,4 +22,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 14_TicTacToe
 - [x] 15_FeatureFlag
 - [x] 16_UseFetch
-- [ ] 17_UseOnClickOutside
+- [x] 17_UseOnClickOutside
+- [ ] 18_UseWindowResize
