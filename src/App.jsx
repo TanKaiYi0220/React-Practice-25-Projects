@@ -17,7 +17,7 @@ import TicTacToe from './components/tic_tac_toe/TicTacToe'
 import FeatureHome from './components/feature_flag/FeatureHome'
 import UseFetchHome from './components/use_fetch/UseFetchHome'
 import UseOnClickOutsideHome from './components/use_on_click_outside/UseOnClickOutsideHome'
-import UseWindowResize from './components/use_window_resize/UseWindowResize'
+import UseWindowResizeHome from './components/use_window_resize/UseWindowResizeHome'
 
 const App = () => {
   return (
@@ -40,7 +40,7 @@ const App = () => {
       {/* <FeatureHome /> */}
       {/* <UseFetchHome /> */}
       {/* <UseOnClickOutsideHome /> */}
-      <UseWindowResize />
+      <UseWindowResizeHome />
     </>
   )
 }

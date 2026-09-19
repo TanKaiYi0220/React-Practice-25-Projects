@@ -27,7 +27,7 @@ body {
         linear-gradient(135deg, var(--page-bg-start), var(--page-bg-end));
 }
 
-.useWindowResizeContainer {
+.useWindowResizeHomeContainer {
     position: relative;
     width: 960px;
     min-height: 520px;
