@@ -1,3 +1,17 @@
+:root {
+    --page-bg-start: #eef4ff;
+    --page-bg-end: #f8fbff;
+    --panel-bg: rgba(255, 255, 255, 0.78);
+    --popup-bg: rgba(255, 255, 255, 0.92);
+    --border-color: rgba(111, 130, 160, 0.24);
+    --text-color: #172033;
+    --muted-color: #667085;
+    --accent-color: #2563eb;
+    --accent-dark: #1d4ed8;
+    --accent-soft: rgba(37, 99, 235, 0.12);
+    --shadow-color: rgba(31, 45, 75, 0.16);
+}
+
 * {
     box-sizing: border-box;
 }
@@ -14,17 +28,97 @@ body {
 }
 
 .useOnClickOutsideHomeContainer {
+    position: relative;
     width: 960px;
     min-height: 520px;
     margin: 72px auto;
     padding: 28px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 14px;
-    align-items: start;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
     border: 1px solid var(--border-color);
     border-radius: 24px;
     background: var(--panel-bg);
     box-shadow: 0 24px 70px var(--shadow-color);
     backdrop-filter: blur(18px);
+}
+
+.useOnClickOutsideHomeContainer::before {
+    content: "";
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    right: -120px;
+    bottom: -140px;
+    border-radius: 50%;
+    background: rgba(37, 99, 235, 0.12);
+}
+
+.useOnClickOutsideHomeContainer button {
+    position: relative;
+    z-index: 1;
+    min-width: 220px;
+    height: 54px;
+    padding: 0 26px;
+    border: 0;
+    border-radius: 16px;
+    background: var(--accent-color);
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 16px 34px rgba(37, 99, 235, 0.28);
+    transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
+}
+
+.useOnClickOutsideHomeContainer button:hover {
+    transform: translateY(-2px);
+    background: var(--accent-dark);
+    box-shadow: 0 20px 42px rgba(37, 99, 235, 0.34);
+}
+
+.useOnClickOutsideHomeContainer button:active {
+    transform: translateY(0);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.24);
+}
+
+.contextMenu {
+    position: relative;
+    z-index: 1;
+    width: 520px;
+    padding: 28px;
+    border: 1px solid var(--border-color);
+    border-radius: 22px;
+    background: var(--popup-bg);
+    box-shadow: 0 26px 70px rgba(31, 45, 75, 0.22);
+    backdrop-filter: blur(18px);
+}
+
+.contextMenu::before {
+    content: "";
+    display: block;
+    width: 56px;
+    height: 6px;
+    margin-bottom: 22px;
+    border-radius: 999px;
+    background: var(--accent-color);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.32);
+}
+
+.contextMenu p {
+    margin: 0 0 12px;
+    color: var(--accent-color);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0;
+    text-transform: uppercase;
+}
+
+.contextMenu h1 {
+    margin: 0;
+    color: var(--text-color);
+    font-size: 32px;
+    line-height: 1.18;
+    font-weight: 800;
 }
