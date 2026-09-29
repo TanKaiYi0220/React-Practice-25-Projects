@@ -2,12 +2,11 @@
     --page-bg-start: #eef4ff;
     --page-bg-end: #f8fbff;
     --panel-bg: rgba(255, 255, 255, 0.78);
-    --popup-bg: rgba(255, 255, 255, 0.92);
+    --card-bg: rgba(255, 255, 255, 0.9);
     --border-color: rgba(111, 130, 160, 0.24);
     --text-color: #172033;
     --muted-color: #667085;
     --accent-color: #2563eb;
-    --accent-dark: #1d4ed8;
     --accent-soft: rgba(37, 99, 235, 0.12);
     --shadow-color: rgba(31, 45, 75, 0.16);
 }
@@ -26,20 +25,73 @@ body {
         radial-gradient(circle at 82% 0%, rgba(14, 165, 233, 0.16), transparent 30%),
         linear-gradient(135deg, var(--page-bg-start), var(--page-bg-end));
 }
-
 .useWindowResizeHomeContainer {
     position: relative;
-    width: 960px;
+    width: min(960px, calc(100% - 80px));
     min-height: 520px;
     margin: 72px auto;
-    padding: 28px;
+    padding: 52px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 34px;
     overflow: hidden;
     border: 1px solid var(--border-color);
     border-radius: 24px;
     background: var(--panel-bg);
     box-shadow: 0 24px 70px var(--shadow-color);
     backdrop-filter: blur(18px);
+    color: var(--accent-color);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.useWindowResizeHomeContainer::before {
+    content: "";
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    right: -120px;
+    bottom: -150px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+}
+.useWindowResizeHomeContainer > div {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+.useWindowResizeHomeContainer p {
+    min-height: 150px;
+    margin: 0;
+    padding: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    background: var(--card-bg);
+    color: var(--text-color);
+    font-size: 24px;
+    line-height: 1.4;
+    font-weight: 700;
+    text-align: center;
+    box-shadow: 0 14px 32px rgba(31, 45, 75, 0.1);
+}
+.useWindowResizeHomeContainer p:first-child {
+    border-top: 5px solid var(--accent-color);
+}
+
+.useWindowResizeHomeContainer p:last-child {
+    border-top: 5px solid #0ea5a4;
+}
+
+.useWindowResizeHomeContainer p:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(31, 45, 75, 0.15);
+    transition: transform 180ms ease, box-shadow 180ms ease;
 }
