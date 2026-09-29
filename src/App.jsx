@@ -18,6 +18,7 @@ import FeatureHome from './components/feature_flag/FeatureHome'
 import UseFetchHome from './components/use_fetch/UseFetchHome'
 import UseOnClickOutsideHome from './components/use_on_click_outside/UseOnClickOutsideHome'
 import UseWindowResizeHome from './components/use_window_resize/UseWindowResizeHome'
+import ScrollTopAndBottom from './components/scroll_top_and_bottom/ScrollTopAndBottom'
 
 const App = () => {
   return (
@@ -40,7 +41,8 @@ const App = () => {
       {/* <FeatureHome /> */}
       {/* <UseFetchHome /> */}
       {/* <UseOnClickOutsideHome /> */}
-      <UseWindowResizeHome />
+      {/* <UseWindowResizeHome /> */}
+      <ScrollTopAndBottom />
     </>
   )
 }
