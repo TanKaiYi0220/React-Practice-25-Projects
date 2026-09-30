@@ -24,4 +24,5 @@ Tutorial Link: [Build 25 React Projects – Tutorial](https://youtu.be/5ZdHfJVAY
 - [x] 16_UseFetch
 - [x] 17_UseOnClickOutside
 - [x] 18_UseWindowResize
-- [ ] 19_ScrollTopAndBottom
+- [x] 19_ScrollTopAndBottom
+- [ ] 20_ScrollSection
